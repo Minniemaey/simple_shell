@@ -17,10 +17,12 @@ size_t buff_size = 0;
 pid_t _pid;
 
 signal(SIGINT, SIG_IGN);
-while(1)
+
+while (1)
 {
 	if (isatty(STDIN_FILENO))
 		const char prompt[] = "~$ ";
+
 		write(STDOUT_FILENO, prompt, sizeof(prompt) - 1);
 	if (_getline(&buffer, &buff_size, stdin) == -1)
 		break;
