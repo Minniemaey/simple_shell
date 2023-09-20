@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * fork_cmd - forks a an exec thread to run cmd
+ * _cmdfork - forks a pid to run cmd
  * @data: struct
  * Return: void
  */
