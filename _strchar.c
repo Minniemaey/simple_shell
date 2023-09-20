@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * *_strchr - 
- *
- * @s: string.
- * @c: character to be located.
- * Return: pointer to first occurrence of NULL if no character found.
+ * *_strchr - searches for a char in string
+ * @s: input string
+ * @c: char to search for
+ * Return: pointer to null
  */
+
 char *_strchr(char *s, char c)
 {
 	while (*s != '\0')
