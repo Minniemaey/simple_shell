@@ -10,6 +10,11 @@ int _strlen(char *ptr)
 {
 	int str = 0;
 
+	if (!ptr)
+	{
+		return (0);
+	}
+
 	while (*(ptr + str) != '\0')
 	{
 		str++;
