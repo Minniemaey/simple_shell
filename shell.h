@@ -100,6 +100,12 @@ int _putchar(char c);
 int _putchar_fd(char c, int fd);
 int _puts_fd(char *s, int fd);
 
+/*memory handling prototypes*/
+char *_memset(char *s, char b, unsigned int n);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+int _free(void **ptr);
+void free_str(char **pp);
+
 /*read line functions*/
 int _getline(data_t *data, char **ptr, size_t *size);
 ssize_t rd_buff(data_t *data, char *buff, size_t *s);
