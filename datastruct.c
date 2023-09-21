@@ -38,7 +38,7 @@ void init_dat(data_t *data, char **av)
  */
 void free_dat(data_t *data, int n)
 {
-	ffree(data->argv);
+	free_str(data->argv);
 	data->argv = NULL;
 	data->path = NULL;
 	if (n)
@@ -51,9 +51,9 @@ void free_dat(data_t *data, int n)
 			free_node(&(data->hist));
 		if (data->alias)
 			free_node(&(data->alias));
-		ffree(data->environ);
+		free_str(data->environ);
 			data->environ = NULL;
-		bfree((void **)data->cmd_buff);
+		_free((void **)data->cmd_buff);
 		if (data->read_fd > 2)
 			close(data->read_fd);
 		_putchar(BUF_FLUSH);
