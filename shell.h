@@ -132,6 +132,30 @@ int _strcmp(char *str1, char *str2);
 char *_strcpy(char *dest, char *src);
 char *_strdup(const char *s);
 
+/*builtin utilities*/
+int _isalpha(int c);
+int _isdelim(char c, char *del);
+int _atoi(char *s);
+char *_itoa(long int num, int base, int flags);
+int _atoi_err(char *s);
+char *search_prefix(const char *haystack, const char *needle);
+
+/*linked list prototypes*/
+list_t *add_node(list_t **head, const char *str, int n);
+list_t *add_node_end(list_t **head, const char *str, int n);
+list_t *find_node_prefix(list_t *node, char *prefix, char c);
+ssize_t find_nodeidx(list_t *head, list_t *node);
+int del_nodeidx(list_t **head, unsigned int idx);
+size_t _listlen(const list_t *h);
+char **list_str(list_t *head);
+size_t print_liststr(const list_t *h);
+size_t print_list(const list_t *h);
+void free_list(list_t **hptr);
+
+/*path prototypes*/
+char *_getcwd(char *pathstr, int start, int stop);
+int is_cmd(data_t *data, char *path);
+char *findpath(data_t *data, char *pathstr, char *cmd);
 
 
 
