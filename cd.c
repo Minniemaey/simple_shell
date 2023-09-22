@@ -42,8 +42,8 @@ int _cd(data_t *data)
 	}
 	else
 	{
-		_setenv(data, "OLDPWD", _getenv(data, "PWD="));
-		_setenv(data, "PWD", getcwd(buffer, 1024));
+		__setenv(data, "OLDPWD", _getenv(data, "PWD="));
+		__setenv(data, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);
 }

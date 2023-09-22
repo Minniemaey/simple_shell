@@ -6,7 +6,7 @@
  * Return: exit status
  */
 
-int _exit(data_t *data)
+int _exitshell(data_t *data)
 {
 	int i;
 

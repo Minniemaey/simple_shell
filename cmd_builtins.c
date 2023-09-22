@@ -18,7 +18,7 @@ void _cmdfork(data_t *data)
 	}
 	if (_pid == 0)
 	{
-		if (execve(data->path, data->argv, getenviron(data)) == -1)
+		if (execve(data->path, data->argv, __getenv(data)) == -1)
 		{
 			free_dat(data, 1);
 			if (errno == EACCES)
@@ -90,10 +90,10 @@ int fd_built(data_t *data)
 {
 	int i, built_param = -1;
 	builtin_table builtintbl[] = {
-		{"exit", _exit},
+		{"exit", _exitshell},
 		{"env", _env},
 		{"help", cd_help},
-		{"history", cd_hist},
+		{"history", cd_history},
 		{"setenv", _setenv},
 		{"unsetenv", _unsetenv},
 		{"cd", _cd},

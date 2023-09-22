@@ -18,7 +18,7 @@ int _putchar_err(char c)
 	}
 	if (c != BUF_FLUSH)
 	{
-		buf[n++] = c;
+		buff[n++] = c;
 	}
 	return (1);
 }

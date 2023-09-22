@@ -46,11 +46,11 @@ void free_dat(data_t *data, int n)
 		if (!data->cmd_buff)
 			free(data->arg);
 		if (data->env)
-			free_node(&(data->env));
+			free_nodes(&(data->env));
 		if (data->hist)
-			free_node(&(data->hist));
+			free_nodes(&(data->hist));
 		if (data->alias)
-			free_node(&(data->alias));
+			free_nodes(&(data->alias));
 		free_str(data->environ);
 			data->environ = NULL;
 		_free((void **)data->cmd_buff);

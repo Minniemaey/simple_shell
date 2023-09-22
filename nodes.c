@@ -138,7 +138,7 @@ int del_nodeidx(list_t **head, unsigned int idx)
 	if (!head || !*head)
 		return (0);
 
-	if (!index)
+	if (!idx)
 	{
 		node = *head;
 		*head = (*head)->next;
@@ -149,7 +149,7 @@ int del_nodeidx(list_t **head, unsigned int idx)
 	node = *head;
 	while (node)
 	{
-		if (i == index)
+		if (i == idx)
 		{
 			prev_node->next = node->next;
 			free(node->str);

@@ -115,6 +115,7 @@ void clr_dat(data_t *data);
 
 /*write functions*/
 int _putchar(char c);
+void _puts(char *s);
 int _putchar_fd(char c, int fd);
 int _puts_fd(char *s, int fd);
 int printdec(int input, int fd);
@@ -122,8 +123,8 @@ int printdec(int input, int fd);
 /*memory handling prototypes*/
 char *_memset(char *s, char b, unsigned int n);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-int _free(void **ptr);
-void free_str(char **pp);
+int _free(void **);
+void free_str(char **);
 
 /*read line functions*/
 int _getline(data_t *data, char **ptr, size_t *size);
@@ -135,6 +136,7 @@ void _sigint(__attribute__((unused))int sig);
 /*error handling functions*/
 int _putchar_err(char c);
 void _puts_err(char *s);
+void _perror(data_t *data, char *err);
 
 /*command execution functions*/
 int _isatty(data_t *data);
@@ -146,7 +148,7 @@ int fd_built(data_t *data);
 int _alias(data_t *data);
 int _cd(data_t *data);
 int _env(data_t *data);
-int _exit(data_t *data);
+int _exitshell(data_t *data);
 
 /*custom string functions*/
 int _strlen(char *ptr);
@@ -179,7 +181,7 @@ size_t _listlen(const list_t *h);
 char **list_str(list_t *head);
 size_t print_liststr(const list_t *h);
 size_t print_list(const list_t *h);
-void free_list(list_t **hptr);
+void free_nodes(list_t **hptr);
 
 /*path/directory prototypes*/
 char *_getcwd(char *pathstr, int start, int stop);

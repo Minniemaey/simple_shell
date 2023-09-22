@@ -102,12 +102,12 @@ size_t print_list(const list_t *h)
 }
 
 /**
- * free_list - frees all nodes of list_t
+ * free_nodes - frees all nodes of list_t
  * @hptr: double ptr to node
  * Return: void
  */
 
-void free_list(list_t **hptr)
+void free_nodes(list_t **hptr)
 {
 	list_t *node, *next_node, *head;
 

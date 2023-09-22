@@ -21,7 +21,7 @@ int exec_cmd(data_t *data, char **av)
 		r = rd_line(data);
 		if (r != -1)
 		{
-			init_data(data, av);
+			init_dat(data, av);
 			built = fd_built(data);
 			if (built == -1)
 				findcmd(data);

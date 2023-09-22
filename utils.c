@@ -15,8 +15,8 @@ char *search_prefix(const char *haystack, const char *needle)
 		{
 			return (NULL);
 		}
-	return ((char *)haystack);
 	}
+	return ((char *)haystack);
 }
 
 /**
