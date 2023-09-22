@@ -1,38 +1,94 @@
 #include "shell.h"
 
 /**
- * path_dir - link directories in path environment
- * @cmd: pointer to path command
- *
- * Return: directory path
+ * _getcwd - creates path name
+ * @pathstr:PATH str
+ * @start: start idx
+ * @stop: stop
+ * Return: ptr to buffer
  */
 
-char *path_dir(char *cmd)
+char *_getcwd(char *pathstr, int start, int stop)
 {
-	int n;
-	char *drc[1024], del = '/';
-	char *pathname = NULL, *token = NULL;
-	char *wd = getcwd(NULL, 0);
-	struct stat sb;
+	static char buff[1024];
+	int i = 0, j = 0;
 
-	pathname = getenv("PATH");
-	token = strtok(pathname, ":");
-
-	if (drc == NULL)
+	for (i = 0, j = start; j < stop; j++)
 	{
-		n = 0;
-	}
-	while (drc[n] != NULL)
-	{
-		chdir(drc[n]);
-		if (stat(cmd, &sb) == 0)
+		if (pathstr[j] != ':')
 		{
-			drc[n] = _str_concat(drc[n], &del, 1);
-			cmd = _strcat(drc[n], cmd);
-			break;
+			buff[i++] = pathstr[j];
 		}
-		n++;
 	}
-	chdir(wd);
-	return (cmd);
+	buff[i] = 0;
+	return (buff);
+}
+
+/**
+ * is_cmd - checks if input is executable
+ * @data: data struct
+ * @path: filepath
+ * Return: on success 1
+ */
+
+int is_cmd(data_t *data, char *path)
+{
+	struct stat st;
+
+	(void)data;
+	if (!path || stat(path, &st))
+		return (0);
+
+	if (st.st_mode & S_IFREG)
+	{
+		return (1);
+	}
+	return (0);
+}
+
+/**
+ * findpath - finds command path
+ * @data: data struct
+ * @pathstr: PATH string
+ * @cmd: cmd to search
+ * Return: cmd path
+ */
+
+char *findpath(data_t *data, char *pathstr, char *cmd)
+{
+	int i = 0, curr_pos = 0;
+	char *path;
+
+	if (!pathstr)
+	{
+		return (NULL);
+	}
+	if ((_strlen(cmd) > 2) && search_prefix(cmd, "./"))
+	{
+		if (is_cmd(data, cmd))
+			return (cmd);
+	}
+	while (1)
+	{
+		if (!pathstr[i] || pathstr[i] == ':')
+		{
+			path = _getcwd(pathstr, curr_pos, i);
+			if (!*path)
+				_strcat(path, cmd);
+			else
+			{
+				_strcat(path, "/");
+				_strcat(path, cmd);
+			}
+			if (is_cmd(data, path))
+			{
+				return (path);
+			}
+			if (!pathstr[i])
+				break;
+			curr_pos = i;
+		}
+		i++;
+	}
+	return (NULL);
 }

@@ -27,6 +27,9 @@
 #define CMD_AND 2
 #define CMD_CHAIN 3
 
+#define CONVERT_LOWERCASE 1
+#define CONVERT_UNSIGNED 2
+
 
 extern char **environ;
 
@@ -85,7 +88,7 @@ typedef struct datast
  */
 typedef struct liststr
 {
-	int num;
+	int n;
 	char *str;
 	struct liststr *next;
 } list_t;
