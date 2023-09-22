@@ -72,12 +72,12 @@ int print_alias(list_t *node)
 }
 
 /**
- * replace_alias - replaces an alias
+ * rep_alias - replaces an alias
  * @data: data struct
  * Return: on success 1
  */
 
-int replace_alias(data_t *data)
+int rep_alias(data_t *data)
 {
 	int n;
 	list_t *node;

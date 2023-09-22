@@ -35,12 +35,12 @@ int replace_str(char **old, char *new)
 }
 
 /**
- * replace_var - hadles variable replacement
+ * rep_var - hadles variable replacement
  * @data: data struct
  * Return: on success 1
  */
 
-int replace_var(data_t *data)
+int rep_var(data_t *data)
 {
 	int i = 0;
 	list_t *node;
