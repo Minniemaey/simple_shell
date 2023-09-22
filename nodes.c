@@ -37,7 +37,7 @@ list_t *add_node(list_t **head, const char *str, int n)
  * add_node_end - adds a new node to the end of a linked list
  * @head: double pointer to head node
  * @str: new element to add
- * @num: node index used by history
+ * @n: node index used by history
  * Return: address of new node or NULL
  */
 
@@ -126,7 +126,7 @@ ssize_t find_nodeidx(list_t *head, list_t *node)
 /**
  * del_nodeidx - deletes a list_t node at given index
  * @head: head node of list_t
- * @index: index of node to be deleted
+ * @idx: index of node to be deleted
  * Return: 1 on success else 0
  */
 

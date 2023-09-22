@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _exit - implement exit builtin that exits the shell
+ * _exitshell - implement exit builtin that exits the shell
  * @data: data struct
  * Return: exit status
  */
