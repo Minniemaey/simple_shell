@@ -160,6 +160,7 @@ char *_strcpy(char *dest, char *src);
 char *_strncpy(char *dest, char *src, int n);
 char *_strdup(const char *s);
 char **_strtok(char *str, char *d);
+char **tokenizer(char *str, char d);
 
 /*builtin utilities*/
 int _isalpha(int c);
