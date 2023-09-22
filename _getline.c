@@ -82,7 +82,6 @@ ssize_t _getbuff(data_t *data, char **buff, size_t *len)
 
 	if (!*len)
 	{
-		/*bfree((void **)info->cmd_buff);*/
 		free(*buff);
 		*buff = NULL;
 		signal(SIGINT, _sigint);

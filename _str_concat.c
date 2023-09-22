@@ -1,14 +1,14 @@
 #include "shell.h"
 
 /**
- * _str_concat - function that concatenates two strings
- * @src: source string
+ * _str_concat - appends n char to the end of a string
  * @dest: destination string
+ * @src: source string
  * @n: string length
  *
  * Return: pointer to dest
  */
-char *_str_concat(char *src, char *dest, int n)
+char *_str_concat(char *dest, char *src, int n)
 {
 	int i, j;
 

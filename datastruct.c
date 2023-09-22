@@ -12,7 +12,7 @@ void init_dat(data_t *data, char **av)
 	data->fname = av[0];
 	if (data->arg)
 	{
-		data->argv = strtow(data->arg, " \t");
+		data->argv = _strtok(data->arg, " \t");
 		if (!data->argv)
 		{
 			data->argv = malloc(sizeof(char *) * 2);
@@ -47,7 +47,7 @@ void free_dat(data_t *data, int n)
 			free(data->arg);
 		if (data->env)
 			free_node(&(data->env));
-		if (data->history)
+		if (data->hist)
 			free_node(&(data->hist));
 		if (data->alias)
 			free_node(&(data->alias));

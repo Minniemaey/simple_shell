@@ -41,3 +41,20 @@ void _puts_err(char *s)
 		i++;
 	}
 }
+
+/**
+ * _perror - prints an error message
+ * @data: data struct
+ * @err: error string type
+ * Return: err int
+ */
+void _perror(data_t *data, char *err)
+{
+	_puts_err(data->fname);
+	_puts_err(": ");
+	printdec(data->err_count, STDERR_FILENO);
+	_puts_err(": ");
+	_puts_err(data->argv[0]);
+	_puts_err(": ");
+	_puts_err(err);
+}

@@ -1,6 +1,17 @@
 #include "shell.h"
 
 /**
+ * _isatty - checks if fd is associated with terminal(interactive)
+ * @data: struct address
+ * Return: 1 if true else 0
+ */
+
+int _isatty(data_t *data)
+{
+	return (isatty(STDIN_FILENO) && data->read_fd <= 2);
+}
+
+/**
  * main - shell entry point
  * @agc: arg count
  * @agv: arg []
@@ -37,7 +48,7 @@ int main(int agc, char **agv)
 		}
 		data->read_fd = fd;
 	}
-	print_envlist(data);
+	build_envlist(data);
 	rd_hist(data);
 	exec_cmd(data, agv);
 	return (EXIT_SUCCESS);
