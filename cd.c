@@ -39,8 +39,8 @@ int _cd(data_t *data)
 	if (ch_dir == -1)
 	{
 		_perror(data, "can't cd to ");
-	       	_puts_err(data->argv[1]), _putchar_err('\n');
-		return (1);
+	       	_puts_err(data->argv[1]);
+		_putchar_err('\n');
 	}
 	else
 		__setenv(data, "OLDPWD", _getenv(data, "PWD="));
