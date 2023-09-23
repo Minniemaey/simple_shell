@@ -11,10 +11,14 @@ int _cd(data_t *data)
 	char *s, *dir, buffer[1024];
 	int ch_dir;
 
-	s = getcwd(buffer, 1024);
+	s = getcwd(buffer, 1024); /*curr dir*/
 	if (!s)
 		_puts("TODO: >>getcwd failure emsg here<<\n");
 	if (data->argv[1])
+	{
+		ch_dir = chdir(data->argv[1]);
+	}
+	else
 	{
 		dir = _getenv(data, "HOME=");
 		if (!dir)
@@ -22,19 +26,7 @@ int _cd(data_t *data)
 		else
 			ch_dir = chdir(dir);
 	}
-	else if (_strcmp(data->argv[1], "-") == 0)
-	{
-		if (!_getenv(data, "OLDPWD="))
-		{
-			_puts(s);
-			_putchar('\n');
-			return (1);
-		}
-		_puts(_getenv(data, "OLDPWD=")), _putchar('\n');
-		ch_dir = chdir((dir = _getenv(data, "OLDPWD=")) ? dir : "/");
-	}
-	else
-		ch_dir = chdir(data->argv[1]);
+
 	if (ch_dir == -1)
 	{
 		_perror(data, "can't cd to ");
@@ -42,8 +34,11 @@ int _cd(data_t *data)
 	}
 	else
 	{
-		__setenv(data, "OLDPWD", _getenv(data, "PWD="));
-		__setenv(data, "PWD", getcwd(buffer, 1024));
+		char new_buffer[1024];
+		char *newdir = getcwd(new_buffer, 1024);
+
+		__setenv(data, "OLDPWD", s);
+		__setenv(data, "PWD", newdir));
 	}
 	return (0);
 }
