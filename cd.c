@@ -18,7 +18,7 @@ int _cd(data_t *data)
 	{
 		ch_dir = chdir(data->argv[1]);
 	}
-	else
+	else if (data->argv[1] == NULL || _strcmp(data->argv[1], "") == 0)
 	{
 		dir = _getenv(data, "HOME=");
 		if (!dir)
