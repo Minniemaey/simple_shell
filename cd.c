@@ -14,8 +14,8 @@ int _cd(data_t *data)
 	s = getcwd(buffer, 1024);
 	if (!s)
 		_puts("TODO: >>getcwd failure emsg here<<\n");
-		return (1);
 	if (data->argv[1])
+	{
 		if (_strcmp(data->argv[1], "-") == 0)
 		{
 			dir = _getenv(data, "OLDPWD=");
@@ -26,6 +26,7 @@ int _cd(data_t *data)
 		else
 			dir = data->argv[1];
 		ch_dir = chdir(dir);
+	}
 	else
 		dir = _getenv(data, "HOME=");
 		if (!dir)
@@ -38,14 +39,13 @@ int _cd(data_t *data)
 	if (ch_dir == -1)
 	{
 		_perror(data, "can't cd to ");
-		_puts_err(data->argv[1]);
-		_putchar_err('\n');
+	       	_puts_err(data->argv[1]), _putchar_err('\n');
 		return (1);
 	}
 	else
 		__setenv(data, "OLDPWD", _getenv(data, "PWD="));
 		__setenv(data, "PWD", getcwd(buffer, 1024));
-	return (0); // Success
+	return (0);
 }
 
 /**
