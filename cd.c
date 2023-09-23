@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _cd - implement cd builtin command
+ * _cd - Implement cd builtin command
  * @data: data struct
  * Return: Always 0
  */
@@ -11,46 +11,41 @@ int _cd(data_t *data)
 	char *s, *dir, buffer[1024];
 	int ch_dir;
 
-	s = getcwd(buffer, 1024); /*curr dir*/
+	s = getcwd(buffer, 1024);
 	if (!s)
 		_puts("TODO: >>getcwd failure emsg here<<\n");
+		return (1);
 	if (data->argv[1])
-	{
-		ch_dir = chdir(data->argv[1]);
-	}
+		if (_strcmp(data->argv[1], "-") == 0)
+		{
+			dir = _getenv(data, "OLDPWD=");
+			if (!dir)
+				_puts(s), _putchar('\n');
+				return (1);
+		}
+		else
+			dir = data->argv[1];
+		ch_dir = chdir(dir);
 	else
-	{
 		dir = _getenv(data, "HOME=");
 		if (!dir)
-			ch_dir = chdir((dir = _getenv(data, "PWD=")) ? dir : "/");
-		else
-			ch_dir = chdir(dir);
-	}
-	if (_strcmp(data->argv[1], "-") == 0)
-	{
-		if (!_getenv(data, "OLDPWD="))
 		{
-			_puts(s);
-			_putchar('\n');
-			return (1);
+			dir = _getenv(data, "PWD=");
+			if (!dir)
+				dir = "/";
 		}
-		_puts(_getenv(data, "OLDPWD=")), _putchar('\n');
-		ch_dir = chdir((dir = _getenv(data, "OLDPWD=")) ? dir : "/");
-	}
+		ch_dir = chdir(dir);
 	if (ch_dir == -1)
 	{
 		_perror(data, "can't cd to ");
-		_puts_err(data->argv[1]), _putchar_err('\n');
+		_puts_err(data->argv[1]);
+		_putchar_err('\n');
+		return (1);
 	}
 	else
-	{
-		char new_buffer[1024];
-		char *newdir = getcwd(new_buffer, 1024);
-
-		__setenv(data, "OLDPWD", s);
-		__setenv(data, "PWD", newdir);
-	}
-	return (0);
+		__setenv(data, "OLDPWD", _getenv(data, "PWD="));
+		__setenv(data, "PWD", getcwd(buffer, 1024));
+	return (0); // Success
 }
 
 /**
@@ -83,3 +78,4 @@ int cd_help(data_t *data)
 	}
 	return (0);
 }
+
