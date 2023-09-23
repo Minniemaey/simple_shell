@@ -26,7 +26,17 @@ int _cd(data_t *data)
 		else
 			ch_dir = chdir(dir);
 	}
-
+	if (_strcmp(data->argv[1], "-") == 0)
+	{
+		if (!_getenv(data, "OLDPWD="))
+		{
+			_puts(s);
+			_putchar('\n');
+			return (1);
+		}
+		_puts(_getenv(data, "OLDPWD=")), _putchar('\n');
+		ch_dir = chdir((dir = _getenv(data, "OLDPWD=")) ? dir : "/");
+	}
 	if (ch_dir == -1)
 	{
 		_perror(data, "can't cd to ");
