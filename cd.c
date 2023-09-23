@@ -8,17 +8,20 @@
 
 int _cd(data_t *data)
 {
-	char *dir, buffer[1024];
+	char *dir, buffer[1024], *current_dir = getcwd(buffer, 1024);
 	int ch_dir;
-	char *current_dir = getcwd(buffer, 1024);
 
 	if (!current_dir)
 		_puts("getcwd failure");
 	if (data->argv[1])
 	{
-		ch_dir = chdir(data->argv[1]);
+		dir = _strcmp(data->argv[1], "-") == 0 ? _getenv(data, "OLDPWD=")
+			: data->argv[1];
+		if (!dir)
+			_puts("OLDPWD not set");
+		ch_dir = chdir(dir);
 	}
-	else if (data->argv[1] == NULL || _strcmp(data->argv[1], "") == 0)
+	else
 	{
 		dir = _getenv(data, "HOME=");
 		if (!dir)
@@ -33,8 +36,7 @@ int _cd(data_t *data)
 	}
 	else
 	{
-		char new_buffer[1024];
-		char *newdir = getcwd(new_buffer, 1024);
+		char new_buffer[1024], *newdir = getcwd(new_buffer, 1024);
 
 		if (!newdir)
 			_puts("getcwd failure");
