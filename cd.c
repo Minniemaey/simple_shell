@@ -38,7 +38,7 @@ int _cd(data_t *data)
 		char *newdir = getcwd(new_buffer, 1024);
 
 		__setenv(data, "OLDPWD", s);
-		__setenv(data, "PWD", newdir));
+		__setenv(data, "PWD", newdir);
 	}
 	return (0);
 }
